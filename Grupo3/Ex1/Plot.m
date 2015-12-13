@@ -1,3 +1,5 @@
+path(path, '..');
+
 %create the directory if it did not exist already
 if ~exist('./images','dir')
     mkdir('images');
