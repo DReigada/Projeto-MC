@@ -1,0 +1,13 @@
+if ~exist('./images','dir')
+    mkdir('images');
+end
+
+%plot the lagendre 
+for n = 1:10
+    fig = figure('Visible','off');
+    leg = @(x) Legendre(n,x);
+    fplot(leg, [-1, 1]);
+    hold on;
+    fplot('0', [-1, 1]);
+    saveas(fig, sprintf('images\\legendre-ord%d.jpg', n));
+end 
