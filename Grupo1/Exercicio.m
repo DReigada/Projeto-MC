@@ -2,10 +2,17 @@
 Ex1Fun;
 path(path, 'Methods');
 
-fprintf('Método da Secante: %.8g\n', secant(h, 155, 160, 1e-10, 100));
+disp('Primeiro zero [150, 160]:');
 
-fprintf('Método de Newton %.8g\n', newton(h, dh, 150, 1e-10, 100));
+disp('Secante:');
+secant(h, 150, 160, 1e-9, 5);
+disp('Newton:');
+newton(h, dh, 150, 1e-9, 5);
 
-fprintf('Método do exercicio %.8g\n', ExMethod(h, dh, 150, 1e-10, 2));
+disp(' ');
+disp('Segundo zero:');
 
-fprintf('MATLAB %.8g\n', fzero(h, 150));
+disp('Secante: [2e4, 2.2e4]');
+secant(h, 2e4, 2.2e4, 1e-9, 5);
+disp('Newton:');
+newton(h, dh, 2e4, 1e-9, 5);
