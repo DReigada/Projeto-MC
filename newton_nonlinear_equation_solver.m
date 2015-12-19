@@ -71,6 +71,19 @@ F =[ 7 * a ...
 		- 1.425 * exp(2.5 * c) ...
 		- 2.640 * exp(3   * c))]
 
+% The Jacobian of F
+JF = jacobian(F, [a, b, c]);
+
+% ### Newton's method aplication -> deltaX = - inv(JF) * F (for each iteration) ### %
+
+deltaX = [1000, 1000, 1000] % change in the solution from one iteration to the next - init with big random numbers
+epsilon = 10^(-10);  % Condition to stop - norm(deltaX) is less than this value
+
+% initial values for the solution
+a0 = 1;		
+b0 = -5;
+c0 = -0.5;
+Xi = [a0, b0, c0];
 
 
 
