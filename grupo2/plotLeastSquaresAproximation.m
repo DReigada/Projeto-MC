@@ -11,8 +11,8 @@ From T we know the following 7 discrete values:
 	ri ||  0 |  0.5  |  1    |  1.5  | 2    | 2.5  | 3    |
 	Ti || -3 | -1.89 | -1.03 | -0.36 | 0.16 | 0.57 | 0.88 |
 
-We obtain the optimal a, b, c values from the newton_nonlinear_equation_solver.m script
-So that program should be ran before this one.
+We obtain the optimal a, b, c values from the newton_nonlinear_equation_solver.m script.
+So that program is called at the begining of this one.
 
 This script also calculates the final error obtained for the Least Squares Method objective
 function - min Q - (the function we try to optimize). This function is given by:
@@ -22,9 +22,10 @@ function - min Q - (the function we try to optimize). This function is given by:
 	        i=0                    i=0
 %}
 
-% ########### IMPORTANT NOTE: run the newton_nonlinear_equation_solver.m script before this one ###########
-% The a, b and c variables are defined there. So this script to plot depends on that one
+% get the optimal a, b and c values from the other script
+newton_nonlinear_equation_solver
 
+fprintf('\n-------------------------------\n\n');
 
 % define the discrete points known for T(r)
 r = 0 : 0.5 : 3;
@@ -42,7 +43,7 @@ g_ri = a + b * exp(c * r);
 % create the figure
 figure; hold on;
 
-% plot the given points
+% plot the given points for T
 plot(r, T, 'o');
 
 % plot the best aproximation for the Least Squares method
@@ -60,5 +61,5 @@ for i = 1 : length(Q_vector)
 	fprintf('ri: %-2.1f | Ti: %.3f | g(ri): %f | di^2: %f\n', r(i), T(i), g_ri(i), Q_vector(i));
 end
 
-fprintf('Q(a, b, c) = %.5f\n', Q_min);
+fprintf('\nQ(a, b, c) = %.5f\n', Q_min);
 
