@@ -101,5 +101,9 @@ end
 
 fprintf('SOLUTION: a = %f | b = %f | c = %f\n', Xi(1), Xi(2), Xi(3));
 
+% define a, b and c explicitely to be used in another script to plot
+a = Xi(1);
+b = Xi(2);
+c = Xi(3);
 
 
