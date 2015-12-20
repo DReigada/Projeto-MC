@@ -1,4 +1,5 @@
 %{
+
 Script for solving the non-linear system of equations F(X) = 0,
 where F is a concrete R3 -> R3 function.
 
@@ -8,12 +9,7 @@ For this we are using the Newton's method:
     
     x(i+1) = x(i) + delta(x(i)).
 
-Also, for solving the linear system in each iteration of the Newton's
-method, we are using the (TODO) method.
-
-TODO: sera que fazemos uma function disto??? para dar para qualquer funcao F
-
-For this method (Newton's) we need to calculate the Jacobian matrix of F. 
+For this method we need to calculate the Jacobian matrix of F. 
 Thus, all F's partial derivatives must exist and be continuous in [R, R, R].
 Furthermore, this Jacobian matrix of F must be invertible in this domain.
 
@@ -69,15 +65,17 @@ F =[ 7 * a ...
 		+ 0.540 * exp(1.5 * c) ...
 		- 0.320 * exp(2   * c) ...
 		- 1.425 * exp(2.5 * c) ...
-		- 2.640 * exp(3   * c))]
+		- 2.640 * exp(3   * c))];
 
 % The Jacobian of F
 JF = jacobian(F, [a, b, c]);
 
 % ### Newton's method aplication -> deltaX = - inv(JF) * F (for each iteration) ### %
 
-deltaX = [1000; 1000; 1000]; % change in the solution from one iteration to the next - init with big random numbers
-epsilon = 10^(-10);  % Condition to stop - norm(deltaX) is less than this value
+% the step each iteration takes
+deltaX = [1000; 1000; 1000];  % init with big numbers to enter while loop
+
+epsilon = 10^(-10);  % Condition to stop -> norm(deltaX) is less than epsilon
 
 % initial values for the solution
 a0 = 1;		
@@ -85,18 +83,23 @@ b0 = -5;
 c0 = -0.5;
 Xi = [a0; b0; c0];
 
+i = 0; % iteration counter
+
 while norm(deltaX) > epsilon
 
-	JF_Xi = subs(JF, {a, b, c}, {Xi});
-	F_Xi = subs(F, {a, b, c}, {Xi});
+	fprintf('------- ITER: %d --------\n', i);
+	i = i + 1;
+    
+	JF_Xi = double(subs(JF, {a, b, c}, {Xi.'}));
+	F_Xi = double(subs(F, {a, b, c}, {Xi.'}));
 
 	deltaX = - inv(JF_Xi) * F_Xi;
-
+    fprintf('Norm: %f\n\n', norm(deltaX));
 	Xi = Xi + deltaX;
 
 end
 
-Xi
+fprintf('SOLUTION: a = %f | b = %f | c = %f\n', Xi(1), Xi(2), Xi(3));
 
 
 
