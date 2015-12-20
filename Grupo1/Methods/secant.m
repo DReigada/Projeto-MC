@@ -22,14 +22,7 @@ while (err>tol) && (iter<n) && ((v-u)~=0)
       v=feval(f,x1);
       err=abs(x1-x0);
       iter=iter+1;
-      fprintf('%2.0f   %+12.6e  %14.6e %14.6e\n', iter, x1, abs(zero - x1), abs(zero - x1)/abs(zero - old)^2);
+      fprintf('%2.0f   %12.8g  %14.8g  %15.8g\n', iter, x1, abs(zero - x1), abs(zero - x1)/abs(zero - old)^2);
 end
 y = x1;
 end
- 
-
-  
- 
-      
-         
-   

@@ -10,7 +10,7 @@ function y = newton(f,df,x0,tol,n)
 iter = 0;
 u = f(x0);
 v = df(x0);
-err = abs(u/v);
+err = tol +1;
 disp('__________________________________________________________')
 disp('iter     xn             |z-xn|       |z-xn|/|z-xn-1|^2')
 disp('__________________________________________________________')
@@ -23,7 +23,7 @@ while (err > tol) && (iter < n) && (v~=0)
       u = f(x0);
       v = df(x0);
       iter = iter+1;
-      fprintf('%2.0f   %+12.6e  %14.6e %14.6e\n', iter, x1, abs(zero - x1), abs(zero - x1)/abs(zero - old)^1.6);
+      fprintf('%2.0f   %12.8g  %14.8g  %15.8g\n', iter, x1, abs(zero - x1), abs(zero - x1)/abs(zero - old)^1.6);
 
 end
 y = x0;
