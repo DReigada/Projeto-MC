@@ -12,10 +12,12 @@ iter = 0;
 u = f(x);
 v = df(x);
 err = tol +1;
+zero = fzero(f, x);
+
+%Print the head of the table
 disp('__________________________________________________________')
 disp('iter     xn             |z-xn|       |z-xn|/|z-xn-1|^3')
 disp('__________________________________________________________')
-zero = fzero(f, x);
 while (err > tol) && (iter < n) && (v~=0)
     y = x - u/v;
     old = x;
@@ -23,6 +25,7 @@ while (err > tol) && (iter < n) && (v~=0)
     u = f(x);
     v = df(x);
     iter = iter + 1;
+    %print the info of the current iterarion
     fprintf('%2.0f   %12.8g  %14.8g %14.8g\n', iter, x, abs(zero - x), abs(zero - x)/abs(zero - old)^3);
 end
 

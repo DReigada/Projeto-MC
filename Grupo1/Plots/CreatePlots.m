@@ -1,3 +1,5 @@
+%Saves the Plots of the function to file images
+
 path(path, '..'); %add the main folder to the path
 Ex1Fun; %define the function for the exercise
 

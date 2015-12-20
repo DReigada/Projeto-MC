@@ -1,3 +1,5 @@
+%Calculates approximations of a function's zeros
+
 % import the mathematical functions and methods used in this Script
 Functions;
 path(path, 'Methods');
