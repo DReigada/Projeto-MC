@@ -22,11 +22,21 @@ function (the function we try to optimize). This function is given by:
 	i=0
 %}
 
+% define the discrete points known for T(r)
+ri = 0 : 0.5 : 3;
+Ti = [-3, -1.89, -1.03, -0.36, 0.16, 0.57, 0.88];
+
 % independent variable
-r = -1 : 0.1 : 5;
+r = -0.3 : 0.25 : 4;
 
 % aproximating function
 y = a + b * exp(c * r);
+
+% create the figure
+figure; hold on;
+
+% plot the given points
+plot(ri, Ti, 'o');
 
 % plot the best aproximation for the Least Squares method
 % for this type function
